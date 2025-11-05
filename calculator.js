@@ -178,21 +178,21 @@ import { add, subtract, multiply, divide } from "./utils/operations.js";
 import { parseNumbers, isValidOperation } from "./utils/parser.js";
 import _ from "lodash";
 
-const operation = process.argv[2];
-const numbers = process.argv.slice(3);
-  if (!isValidOperation(operation)) {
-      console.log("Invalid operation. Use: add, subtract, multiply, or divide");
-      process.exit(1);
-    }
+function Calculator() {
+  const operation = process.argv[2];
+  const numbers = process.argv.slice(3).map(Number);
 
-  const nums = parseNumbers(numbers);
+  if (!isValidOperation(operation)) {
+    console.log("Invalid operation. Use: add, subtract, multiply, or divide");
+    return;   
+  }
+
   let result;
 
   switch (operation) {
     case "add":
-      result = add(nums);
+      result = add(numbers);
       break;
-    // ... other cases
     case "subtract":
       result = subtract(numbers);
       break;
@@ -205,3 +205,5 @@ const numbers = process.argv.slice(3);
   }
 
   console.log(`Result: ${result}`);
+}
+Calculator(); 
